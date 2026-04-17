@@ -24,8 +24,9 @@ RUN npm run build
 # Create final image
 FROM apify/actor-node:24
 
-# Check preinstalled packages
-RUN npm ls @crawlee/core apify puppeteer playwright
+# Check preinstalled packages 
+# ORIGINAL - RUN npm ls @crawlee/core apify puppeteer playwright
+RUN npm ls @crawlee/core apify puppeteer playwright && rm -rf ~/.npm/_logs node_modules/.cache
 
 # Copy just package.json and package-lock.json
 # to speed up the build using Docker layer cache.
@@ -39,12 +40,6 @@ RUN ls -l package*.json
 # tree for debugging
 RUN npm --quiet set progress=false \
     && npm install --omit=dev --omit=optional \
-    && echo "Installed NPM packages:" \
-    && (npm list --omit=dev --all || true) \
-    && echo "Node.js version:" \
-    && node --version \
-    && echo "NPM version:" \
-    && npm --version \
     && rm -r ~/.npm
 
 # Copy built JS files from builder image
