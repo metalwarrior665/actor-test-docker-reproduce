@@ -18,6 +18,8 @@ interface Input {
     maxRequestsPerCrawl: number;
 }
 
+//test
+
 // The init() call configures the Actor to correctly work with the Apify-provided environment - mainly the storage infrastructure. It is necessary that every Actor performs an init() call.
 await Actor.init();
 
