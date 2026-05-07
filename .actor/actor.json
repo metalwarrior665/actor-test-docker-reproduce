@@ -15,5 +15,8 @@
 	"storages": {
 		"dataset": "./dataset_schema.json"
 	},
-	"dockerfile": "../Dockerfile"
+	"dockerfile": "../Dockerfile",
+	"environmentVariables": {
+		"TEST": "test"
+	}
 }
